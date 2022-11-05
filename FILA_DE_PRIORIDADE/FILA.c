@@ -14,7 +14,7 @@ void criaFila(Fila *fila){
 }
 
 void inserir(Fila *fila, int num){
-    No *novo = malloc(sizeof(No));
+    No *aux, *novo = malloc(sizeof(No));
     if(novo){
         novo->valor= num;
         novo->proximo=NULL;
@@ -27,31 +27,25 @@ void inserir(Fila *fila, int num){
                     novo->proximo=fila->primeiro;
                     fila->primeiro=novo;
                 }else{
-                    
+                    aux=fila->primeiro;
+
+                    if(aux->proximo!=NULL){
+                        while (aux->proximo->valor>59){
+                            aux=aux->proximo;
+                            if (aux->proximo == NULL)
+                            {
+                                break;
+                            }
+                        }
+                        novo->proximo = aux->proximo;
+                        aux->proximo = novo;
+                    }
                 }
             }else{
                 fila->fim->proximo=novo;
                 fila->fim=novo;
             }
             
-        }
-        fila->tam++;
-    }else{
-        printf("\nErro ao alocar memória\n");
-    }
-}
-void inserirPrioridade(Fila *fila, int num){
-    No *novo = malloc(sizeof(No));
-    if(novo){
-        novo->valor= num;
-        novo->proximo=NULL;
-        if(fila->primeiro==NULL){
-            fila->primeiro=novo;
-            fila->fim=novo;
-        }else{
-            if(num<63)
-            fila->fim->proximo=novo;
-            fila->fim=novo;
         }
         fila->tam++;
     }else{

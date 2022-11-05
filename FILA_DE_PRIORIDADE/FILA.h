@@ -26,7 +26,6 @@ typedef struct {
 void criaFila(Fila *fila);
 
 void inserir(Fila *fila, int num);
-void inserirPrioridade(Fila *fila, int num);
 No* remover(Fila *fila);
 void imprimir(Fila *fila);
 
